@@ -5,6 +5,7 @@ using ADO_AddressBook;
 namespace ADOAddressBookValidation
 {
 
+
     [TestClass]
     public class AddressBookTesting
     {
@@ -56,6 +57,14 @@ namespace ADOAddressBookValidation
         {
             string expected = "Harsha Pramela meena ";
             string actual = addressBookRepository.PrintDataBasedOnCity("Bangalore", "Karnataka");
+            Assert.AreEqual(expected, actual);
+        }
+        //UC 6: Ability to Retrieve Count of Person belonging to a City or State
+        [TestMethod]
+        public void GivenCountQuery_ReturnString()
+        {
+            string expected = "2 1 3 1 ";
+            string actual = addressBookRepository.PrintCountDataBasedOnCity();
             Assert.AreEqual(expected, actual);
         }
     }
