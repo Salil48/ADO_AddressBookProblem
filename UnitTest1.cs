@@ -42,7 +42,7 @@ namespace ADOAddressBookValidation
             int actual = addressBookRepository.UpdateQueryBasedonName();
             Assert.AreEqual(expected, actual);
         }
-        //UseCase 3: Modify Existing Contact using their name
+        //UseCase 4: Delete person based on Name
         [TestMethod]
         public void GivenDeleteQuery_ReturnOne()
         {
