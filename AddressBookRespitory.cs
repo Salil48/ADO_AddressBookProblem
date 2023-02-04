@@ -117,6 +117,63 @@ namespace ADO_AddressBook.ADO_AddressBook
             }
             return nameList;
         }
+        //UC 6: Ability to Retrieve Count of Person belonging to a City or State
+        public string PrintCountDataBasedOnCity()
+        {
+            string nameList = "";
+            //query to be executed
+            string query = @"select Count(*),state,City from Address_Book_Table Group by state,City";
+            SqlCommand sqlCommand = new SqlCommand(query, this.sqlConnection);
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
+                {
+                    Console.WriteLine("{0} \t {1} \t {2}", sqlDataReader[0], sqlDataReader[1], sqlDataReader[2]);
+                    nameList += sqlDataReader[0].ToString() + " ";
+                }
+            }
+            return nameList;
+        }
+        //UC 7: Ability to retrieve entries sorted alphabetically
+        public string PrintSortDataBasedOnCity(string City)
+        {
+            string nameList = "";
+            //query to be executed
+            string query = "select * from Address_Book_Table where City='" + City + "' order by(FirstName)";
+            SqlCommand sqlCommand = new SqlCommand(query, this.sqlConnection);
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
+                {
+                    DisplayEmployeeDetails(sqlDataReader);
+                    nameList += sqlDataReader["FirstName"].ToString() + " ";
+                }
+            }
+            return nameList;
+        }
+        //UC 8: Ability to get number of contact persons by Type
+        public string ContactDataBasedOnType()
+        {
+            string nameList = "";
+            //query to be executed
+            string query = @"select Count(*) as NumberOfContacts,Type from Address_Book_Table Group by Type";
+            SqlCommand sqlCommand = new SqlCommand(query, this.sqlConnection);
+            sqlConnection.Open();
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            if (sqlDataReader.HasRows)
+            {
+                while (sqlDataReader.Read())
+                {
+                    Console.WriteLine("{0} \t {1}", sqlDataReader[0], sqlDataReader[1]);
+                    nameList += sqlDataReader[0].ToString() + " ";
+                }
+            }
+            return nameList;
+        }
 
 
         public void DisplayEmployeeDetails(SqlDataReader sqlDataReader)
