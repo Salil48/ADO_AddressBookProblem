@@ -99,6 +99,15 @@ namespace ADOAddressBookValidation
             string actual = transactionSelect.RetrievebasedOnDate();
             Assert.AreEqual(expected, actual);
         }
+        //UC 12: Insert into Table using Transactions
+        [TestMethod]
+        public void GivenInsertQuery_UsingTransaction_ReturnInt()
+        {
+            TransactionClass transactions = new TransactionClass();
+            int expected = 1;
+            int actual = transactions.InsertIntoTables();
+            Assert.AreEqual(expected, actual);
+        }
     }
 
 
