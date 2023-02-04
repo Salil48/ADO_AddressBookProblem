@@ -4,12 +4,12 @@ using ADO_AddressBook;
 
 namespace ADOAddressBookValidation
 {
+
     [TestClass]
     public class AddressBookTesting
     {
         AddressBookRespitory addressBookRepository;
         [TestInitialize]
-
         public void SetUp()
         {
             addressBookRepository = new AddressBookRespitory();
@@ -32,6 +32,22 @@ namespace ADOAddressBookValidation
             addressBook.AddressBookName = "FriendName";
             addressBook.Type = "Friends";
             int actual = addressBookRepository.InsertIntoTable(addressBook);
+            Assert.AreEqual(expected, actual);
+        }
+        //UseCase 3: Modify Existing Contact using their name
+        [TestMethod]
+        public void GivenUpdateQuery_ReturnOne()
+        {
+            int expected = 1;
+            int actual = addressBookRepository.UpdateQueryBasedonName();
+            Assert.AreEqual(expected, actual);
+        }
+        //UseCase 3: Modify Existing Contact using their name
+        [TestMethod]
+        public void GivenDeleteQuery_ReturnOne()
+        {
+            int expected = 1;
+            int actual = addressBookRepository.DeletePersonBasedonName();
             Assert.AreEqual(expected, actual);
         }
     }
